@@ -1,0 +1,14 @@
+services:
+  mysqldb: # 도커 컴포즈에서 실행되는 프로세스 이름 마음대로 나머진 키워드!
+    image: mysql
+    restart: always
+    volumes:
+      - mysql-compose-volume:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root1234
+      - MYSQL_DATABASE=rootdb
+    ports:
+      - '3307:3306'
+
+volumes:
+  mysql-compose-volume:
