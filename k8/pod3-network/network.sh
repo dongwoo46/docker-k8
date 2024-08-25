@@ -31,8 +31,8 @@ kubectl exec blue-green-app -c green-app -- curl -vs localhost:8080/sky
 kubectl exec blue-green-app -c green-app -- curl -vs localhost:8080/hello
 
 # blue-app 컨테이너 -> red-app 컨테이너 /rose, /hello 요청 실행
-# 서로 다른 pod이기때문에 red-app의 ip를 알아내야함
-# RED_POD_IP로 red-app의 pod ip 변수 할당
+# 서로 다른 pod이기때문에 red-app의 pod ip를 알아내야함
+# RED_POD_IP로 red-app의 pod ip 변수 할당 및 저장
 export RED_POD_IP=$(kubectl get pod red-app -o jsonpath="{.status.podIP}")
 echo $RED_POD_IP
 kubectl exec blue-green-app -c blue-app -- curl -vs $RED_POD_IP:8080/rose

@@ -4,21 +4,21 @@ metadata:
   name: hello-app
   namespace: default
 spec:
-  // Pod, 컨테이너 이름과 이미지, 포트 설정
+  # Pod, 컨테이너 이름과 이미지, 포트 설정
   containers:
-    - name: hello-app
-      image: yoonjeong/hello-app:1.0
+    - name: hello-app # 컨테이너 이름
+      image: yoonjeong/hello-app:1.0 # 도커이미지
       ports:
-        - containerPort: 8080
-      env:
-        - name: POD_NAME
-          valueFrom:
+        - containerPort: 8080 # 컨테이너 포트 매핑
+      env: # 환경변수와 키 값 설정
+        - name: POD_NAME # 환경변수 키 설정
+          valueFrom: # 환경변수 값 설정
             fieldRef:
               fieldPath: metadata.name
         - name: POD_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
+          valueFrom:  # 쿠버네티스 오브젝트로부터 환경변수 값을 얻겠다.
+            fieldRef: # Pod spec, status의 field를 환경변수 값으로 참조하겠다.
+              fieldPath: status.podIP # 참조할 filend의 경로 선택
         - name: NAMESPACE_NAME
           valueFrom:
             fieldRef:
